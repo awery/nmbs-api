@@ -1,4 +1,4 @@
-# nmbs-api — Unofficial documentation of the NMBS/SNCB API
+# Unofficial documentation of the NMBS/SNCB API
 
 The base URL is http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/. No authentication is required.
 
