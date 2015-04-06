@@ -238,18 +238,18 @@ POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn
 | `inputTripelId`  | [Station].i (see **Find a station** response) |
 | `boardType`  | `dep` or `arr` |
 | `maxJourneys`  | eg. `50` |
+| `productsFilter`  | `11111111111111` (all) |
 | `L`  | `vs_java3` |
 | `start`  | `yes` |
 | `showHimMessages`  | `1` |
 | `hcount`  | `0` |
-| `productsFilter`  | `11111111111111` (all) |
 | `clientType`  | eg. `ANDROID`  |
 | `androidversion`  | eg. `3.1.12 (33911)`  |
 | `clientSystem`  | eg. `Android19`  |
 | `clientDevice`  | eg. `GT-I9505`  |
 | `htype`  | eg. `GT-I9505`  |
 
-'productsFilter' can also have the following values:
+`productsFilter` can also have the following values:
 * `11011101000111` International trains
 * `01111101000111` IC/IR/P/ICT
 * `01011111000111` City Rail/L
