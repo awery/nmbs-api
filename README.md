@@ -242,12 +242,22 @@ POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn
 | `start`  | `yes` |
 | `showHimMessages`  | `1` |
 | `hcount`  | `0` |
-| `productsFilter`  | `11111111111111` |
+| `productsFilter`  | `11111111111111` (all) |
 | `clientType`  | eg. `ANDROID`  |
 | `androidversion`  | eg. `3.1.12 (33911)`  |
 | `clientSystem`  | eg. `Android19`  |
 | `clientDevice`  | eg. `GT-I9505`  |
 | `htype`  | eg. `GT-I9505`  |
+
+'productsFilter' can also have the following values:
+* `11011101000111` International trains
+* `01111101000111` IC/IR/P/ICT
+* `01011111000111` City Rail/L
+* `01011101100111` Métro
+* `01011101010111` Bus
+* `01011101001111` Tram
+
+Combinations are also possible.
 
 ### Example
 
