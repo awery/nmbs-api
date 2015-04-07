@@ -1,12 +1,13 @@
 # Unofficial documentation of the NMBS/SNCB API
 
-The base URL is http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/. No authentication is required.
+This is a compilation of the findings I made about the API used by the [Android NMBS/SNCB app](https://play.google.com/store/apps/details?id=de.hafas.android.sncbnmbs). I used [mitmproxy](http://mitmproxy.org/) to analyse the requests and responses.
+
+No HTTPS is used and no authentication is required (unlike the old Railtime API) for all different endpoints.
 
 ## Get all stations
 Endpoint still to be found.
 
 ## Find a station
-
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/dn
 
 Parameter
@@ -38,7 +39,10 @@ Response
     </ResC>
 
 ## Find a connection
-POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/fn
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/fn (FR)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/nl (NL)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/en (EN)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/de (DE)
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -82,7 +86,10 @@ This is a two steps process:
 1. Get the timetable with the _train link_ and the date
 
 ### Find the train link
-POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/fn
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/fn (FR)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/nl (NL)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/en (EN)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/de (DE)
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -116,7 +123,7 @@ Response
         {"value":"IC  2427","cycle":"0","pool":"80","id":"1583","dep":"Luik-Paleis","trainLink":"795198/266649/392280/68926/80","journParam":"identifiedByjourneyID=IC  2427:Luik-Paleis:13.04.2015:05:42&externalId=1583&lineName=1583&internalID=1583&cycle=0&poolUIC=80&trainName=IC  2427&trainType=007&trainClass=2&firstStationName=Luik-Paleis&firstStationEvaID=8841525&firstStationDep=13.04.2015 05:42","pubTime":"20:33","depDate":"13.04.2015","depTime":"05:42","arr":"Brussel-Zuid","arrTime":"07:58","vt":"2. Fév jusqu'au 11. Déc 2015 Lu - Ve; pas 6. Avr, 1., 14., 25. Mai, 21. Jul, 11. Nov"}
     ]};
 
-The response is not a valid JSON due to the ending semi-colon.
+The response is not valid JSON due to the ending semi-colon.
 
 #### Example without date parameter
 Train IC 3615 on 13/04/2015
@@ -136,11 +143,13 @@ Response
         {"value":"IC  3615","cycle":"0","pool":"80","id":"2280","dep":"De Panne","trainLink":"927831/311557/408824/104865/80","journParam":"identifiedByjourneyID=IC  3615:De Panne:06/04/15:15:52&externalId=2280&lineName=2280&internalID=2280&cycle=0&poolUIC=80&trainName=IC  3615&trainType=007&trainClass=2&firstStationName=De Panne&firstStationEvaID=8892338&firstStationDep=06/04/15 15:52","pubTime":"20:35","depDate":"06/04/15","depTime":"15:52","arr":"Landen","arrTime":"19:21","vt":"28. Fév jusqu'au 12. Déc 2015 Sa, Di; pas 7. jusqu'au 29. Mar 2015, 11. jusqu'au 19. Avr 2015, 2., 3. Mai; aussi 6. Avr, 1., 14., 25. Mai, 21. Jul, 11. Nov"}
     ]};
 
-The response is not a valid JSON due to the ending semi-colon.
+The response is not valid JSON due to the ending semi-colon.
 
 
 ### Get the train timetable
-GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/fn/[train_link]
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/fn/[train_link] (FR)
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/nl/[train_link] (NL)
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/en/[train_link] (EN)
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -183,7 +192,7 @@ Response
         [...]
     </Journey>
 
-The response contains non-stopping stations but without time information.
+The response contains arrival and departure delays for stopping stations but no time information at all for non-stopping stations.
 
 ### Example in JSON
 Train IC 2427 on 13/04/2015
@@ -227,9 +236,13 @@ Response
         }
     ]}
 
-## Get the liveboard of a station
+The response does not contain delay information but contains arrival and departure time for non-stopping stations.
 
-POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn
+## Get the liveboard of a station
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn (FR)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/nl (NL)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/en (EN)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/de (DE)
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -249,15 +262,16 @@ POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn
 | `clientDevice`  | eg. `GT-I9505`  |
 | `htype`  | eg. `GT-I9505`  |
 
-`productsFilter` can also have the following values:
-* `11011101000111` International trains
-* `01111101000111` IC/IR/P/ICT
-* `01011111000111` City Rail/L
-* `01011101100111` Métro
-* `01011101010111` Bus
-* `01011101001111` Tram
+`productsFilter` can have the following values:
+* `11111111111111` All
+* `11011101000111` International trains only
+* `01111101000111` IC/IR/P/ICT only
+* `01011111000111` City Rail/L only
+* `01011101100111` Métro only
+* `01011101010111` Bus only
+* `01011101001111` Tram only
 
-Combinations are also possible.
+Combinations are also possible (to be further completed).
 
 ### Example
 
@@ -278,9 +292,12 @@ Response
         [...]
     </StationTable>
 
-## Get the perturbations
+## Get the perturbations RSS feed
 
-GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/fn?tpl=rss_feed
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/fn?tpl=rss_feed (FR)
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/nl?tpl=rss_feed (NL)
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/en?tpl=rss_feed (EN)
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/de?tpl=rss_feed (DE)
 
 ### Example
 
