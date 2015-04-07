@@ -161,6 +161,7 @@ GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/nl/[train_
 
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/en/[train_link] (EN)
 
+GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/de/[train_link] (DE)
 
 | Parameter  | Value |
 | ------------- | ------------- |
