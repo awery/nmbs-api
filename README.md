@@ -2,7 +2,7 @@
 
 This is a compilation of the findings I made about the API used by the [Android NMBS/SNCB app](https://play.google.com/store/apps/details?id=de.hafas.android.sncbnmbs). I used [mitmproxy](http://mitmproxy.org/) to analyse the requests and responses.
 
-No HTTPS is used and no authentication is required (unlike the old Railtime API) for all different endpoints.
+No HTTPS is used and no authentication is required (unlike the old Railtime API) for all endpoints listed below.
 
 ## Get all stations
 Endpoint still to be found.
@@ -39,10 +39,14 @@ Response
     </ResC>
 
 ## Find a connection
-POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/fn (FR)
+POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/fn (FR
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/nl (NL)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/en (EN)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/query.exe/de (DE)
+
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -87,9 +91,13 @@ This is a two steps process:
 
 ### Find the train link
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/fn (FR)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/nl (NL)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/en (EN)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/trainsearch.exe/de (DE)
+
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -148,8 +156,11 @@ The response is not valid JSON due to the ending semi-colon.
 
 ### Get the train timetable
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/fn/[train_link] (FR)
+
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/nl/[train_link] (NL)
+
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/traininfo.exe/en/[train_link] (EN)
+
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -240,9 +251,13 @@ The response does not contain delay information but contains arrival and departu
 
 ## Get the liveboard of a station
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/fn (FR)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/nl (NL)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/en (EN)
+
 POST http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/stboard.exe/de (DE)
+
 
 | Parameter  | Value |
 | ------------- | ------------- |
@@ -295,9 +310,13 @@ Response
 ## Get the perturbations RSS feed
 
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/fn?tpl=rss_feed (FR)
+
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/nl?tpl=rss_feed (NL)
+
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/en?tpl=rss_feed (EN)
+
 GET http://www.belgianrail.be/jp/sncb-nmbs-routeplanner/help.exe/de?tpl=rss_feed (DE)
+
 
 ### Example
 
